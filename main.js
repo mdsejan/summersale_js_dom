@@ -14,6 +14,8 @@ function handleClick(target) {
     const setTotalPrice = parseFloat(price) + parseFloat(getOutputPrice);
 
     document.getElementById("outputPrice").innerText = setTotalPrice.toFixed(2);
+    document.getElementById("grandTotal").innerText = setTotalPrice.toFixed(2) + "TK";
+
 
     if (setTotalPrice > 0) {
         const purchaseButton = document.getElementById("purchase");
@@ -26,7 +28,24 @@ function handleClick(target) {
         cuponButton.classList.remove("btn-disabled");
         cuponButton.classList.add("bg-[#E527B2]", "hover:bg-[#E527B2]", "text-white");
     }
-    console.log(itemName + " == " + price)
 
+}
+
+
+function applyCupon(cupon) {
+
+    const cuponCode = "SELL200";
+    const inputValue = cupon.parentNode.childNodes[1].value;
+    if (inputValue == cuponCode) {
+        const totalPrice = document.getElementById("outputPrice").innerText.split(" ")[0];
+        const discount = totalPrice * (20 / 100);
+
+        document.getElementById("discount").innerText = discount.toFixed(2) + "TK";
+        const priceAfterDiscount = parseFloat(totalPrice) - parseFloat(discount);
+
+        document.getElementById("grandTotal").innerText = priceAfterDiscount.toFixed(2) + "TK";
+    } else {
+        alert("Please Use a Valid Cupon")
+    }
 }
 
