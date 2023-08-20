@@ -49,3 +49,7 @@ function applyCupon(cupon) {
     }
 }
 
+
+document.getElementById("goHome").addEventListener("click", function () {
+    window.location.href = "index.html";
+})
